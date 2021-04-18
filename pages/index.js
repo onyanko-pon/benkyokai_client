@@ -1,4 +1,4 @@
-import Page from '../components/page'
+import {useEffect, useState} from "react";
 
 export default function Index() {
   return <Page />
