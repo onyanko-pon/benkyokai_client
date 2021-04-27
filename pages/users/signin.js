@@ -10,7 +10,7 @@ export default function SignIn() {
     const { code } = queryString.parse(router.asPath.split(/\?/)[1])
     console.log(code)
     if (code === "" || code === undefined) {
-      router.push("https://slack.com/oauth/v2/authorize?user_scope=identity.basic&client_id=902472642709.1202297519351")
+      router.push(process.env.NEXT_PUBLIC_SIGN_IN_URL_WITH_SLACK)
     }
   }, [router.asPath])
 
