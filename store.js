@@ -6,6 +6,8 @@ let store
 
 const initialState = {
   count: 0,
+  user: {},
+  workspace: {}
 }
 
 const reducer = (state = initialState, action) => {
