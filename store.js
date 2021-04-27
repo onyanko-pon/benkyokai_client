@@ -7,11 +7,18 @@ let store
 const initialState = {
   count: 0,
   user: {},
-  workspace: {}
+  team: {},
+  authedUser: {},
 }
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
+    case 'SET_AUTHED_USER':
+      return {
+        ...state,
+        authedUser: action.authedUser
+      }
+
     case 'INCREMENT':
       return {
         ...state,
