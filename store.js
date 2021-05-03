@@ -7,8 +7,7 @@ let store
 const initialState = {
   count: 0,
   user: {},
-  team: {},
-  authedUser: {},
+  workspace: null,
 }
 
 const reducer = (state = initialState, action) => {
