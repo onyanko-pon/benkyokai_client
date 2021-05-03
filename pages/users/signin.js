@@ -15,7 +15,7 @@ export default function SignIn() {
       router.push(process.env.NEXT_PUBLIC_SIGN_IN_URL_WITH_SLACK)
     }
 
-    fetch(`${process.env.NEXT_PUBLIC_API_BASE}/slack/auth/v2.access`, {
+    fetch(`${process.env.NEXT_PUBLIC_API_BASE}/slack/auth/signin`, {
       method: "POST",
       headers: {
         'Content-Type': 'application/json',
@@ -24,12 +24,15 @@ export default function SignIn() {
     }).then(data => data.json()
     ).then(data => {
       dispatch({
-        type: 'SET_AUTHED_USER',
-        authedUser: data.authed_user
+        type: 'SET_USER',
+        user: data.user,
+      })
+      dispatch({
+        type: 'SET_WORKSPACE',
+        workspace: data.workspace
       })
       console.log(data)
     })
-
 
     // router.push("/")
 

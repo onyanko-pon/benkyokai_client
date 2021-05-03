@@ -13,12 +13,16 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case 'SET_AUTHED_USER':
+    case 'SET_USER':
       return {
         ...state,
-        authedUser: action.authedUser
+        user: action.user
       }
-
+    case 'SET_WORKSPACE':
+      return {
+        ...state,
+        workspace: action.workspace
+      }
     case 'INCREMENT':
       return {
         ...state,
