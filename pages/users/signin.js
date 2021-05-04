@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router'
-import {useEffect} from "react"
+import { useEffect } from "react"
 import queryString from 'query-string'
-import {useDispatch, useSelector} from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 export default function SignIn() {
 
@@ -16,6 +16,7 @@ export default function SignIn() {
     }
 
     fetch(`${process.env.NEXT_PUBLIC_API_BASE}/slack/auth/signin`, {
+      credentials: 'include',
       method: "POST",
       headers: {
         'Content-Type': 'application/json',

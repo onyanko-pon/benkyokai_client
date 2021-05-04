@@ -1,12 +1,11 @@
 import { useMemo } from 'react'
 import { createStore, applyMiddleware } from 'redux'
 import { composeWithDevTools } from 'redux-devtools-extension'
-
 let store
 
 const initialState = {
   count: 0,
-  user: {},
+  user: null,
   workspace: null,
 }
 
