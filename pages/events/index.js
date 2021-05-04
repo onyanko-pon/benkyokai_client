@@ -1,16 +1,19 @@
 import {useState, useEffect} from "react";
 import { useSelector, useDispatch } from 'react-redux'
 import { useRouter } from 'next/router'
+import Link from "next/link";
 
 const Event = (props) => {
   return <div>
     <p>{props.id}</p>
-    <p>{props.title}</p>
+    <Link href={`/events/${props.id}`}>
+      <a>{props.title}</a>
+    </Link>
     <p>{props.description}</p>
   </div>
 }
 
-const Events = (props) => {
+const Index = (props) => {
 
   const router = useRouter()
   const [events, setEvents] = useState([])
@@ -65,4 +68,4 @@ const Events = (props) => {
   </div>
 }
 
-export default Events
+export default Index
