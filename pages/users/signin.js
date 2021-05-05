@@ -32,15 +32,10 @@ export default function SignIn() {
         type: 'SET_WORKSPACE',
         workspace: data.workspace
       })
-      console.log(data)
     })
-
-    // router.push("/")
 
   }, [router.asPath])
 
-  const authedUser = useSelector((state) => state.authedUser)
-  console.log({authedUser})
   return <div>
     signin page
   </div>
