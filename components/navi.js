@@ -1,5 +1,5 @@
-import Link from 'next/link'
-import {Navbar, Nav, NavDropdown} from "react-bootstrap"
+import Link from 'next/link' // TODO クライアントレンダリングするようにこれを使う
+import {Navbar, Nav} from "react-bootstrap"
 
 // TODO これをコピペしているので後で精査
 // https://react-bootstrap.github.io/components/navbar/#navbars-mobile-friendly

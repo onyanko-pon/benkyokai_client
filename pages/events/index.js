@@ -3,14 +3,26 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useRouter } from 'next/router'
 import Link from "next/link";
 
-const Event = (props) => {
-  return <div>
-    <p>{props.id}</p>
-    <Link href={`/events/${props.id}`}>
-      <a>{props.title}</a>
-    </Link>
-    <p>{props.description}</p>
-  </div>
+// blockquote ないかも
+import {Card, blockquote} from "react-bootstrap";
+
+const EventCard = (props) => {
+
+  return <Link href={`/events/${props.id}`}>
+    <Card>
+      <Card.Header>{props.title}</Card.Header>
+      <Card.Body>
+        <blockquote className="blockquote mb-0">
+          <p>
+            {props.description}
+          </p>
+          <footer className="blockquote-footer">
+            20:00~21:00
+          </footer>
+        </blockquote>
+      </Card.Body>
+    </Card>
+  </Link>
 }
 
 const Index = (props) => {
@@ -63,7 +75,7 @@ const Index = (props) => {
 
   return <div>
     {
-      events.map(event => <Event {...event} key={event.id} />)
+      events.map(event => <EventCard {...event} key={event.id} />)
     }
   </div>
 }
