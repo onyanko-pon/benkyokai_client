@@ -7,5 +7,6 @@ module.exports = {
     }
 
     return config;
-  }
+  },
+  distDir: '.next',
 };
