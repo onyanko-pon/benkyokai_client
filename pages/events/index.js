@@ -4,25 +4,29 @@ import { useRouter } from 'next/router'
 import Link from "next/link";
 
 // blockquote ないかも
-import {Card, blockquote} from "react-bootstrap";
+import {Card, Row, Col, Container, blockquote} from "react-bootstrap";
 
 const EventCard = (props) => {
 
-  return <Link href={`/events/${props.id}`}>
-    <Card>
-      <Card.Header>{props.title}</Card.Header>
-      <Card.Body>
-        <blockquote className="blockquote mb-0">
-          <p>
-            {props.description}
-          </p>
-          <footer className="blockquote-footer">
-            20:00~21:00
-          </footer>
-        </blockquote>
-      </Card.Body>
-    </Card>
-  </Link>
+  return <Row className={"mt-3"}>
+    <Col>
+      <Link href={`/events/${props.id}`}>
+        <Card>
+          <Card.Header>{props.title}</Card.Header>
+          <Card.Body>
+            <blockquote className="blockquote mb-0">
+              <p>
+                {props.description}
+              </p>
+              <footer className="blockquote-footer">
+                20:00~21:00
+              </footer>
+            </blockquote>
+          </Card.Body>
+        </Card>
+      </Link>
+    </Col>
+  </Row>
 }
 
 const Index = (props) => {
@@ -73,11 +77,11 @@ const Index = (props) => {
       .then(data => setEvents(data.events))
   }, [])
 
-  return <div>
+  return <>
     {
       events.map(event => <EventCard {...event} key={event.id} />)
     }
-  </div>
+  </>
 }
 
 export default Index

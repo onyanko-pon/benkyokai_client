@@ -10,7 +10,7 @@ const Event = (props) => {
   const { event } = props
 
   return <Link href={`/events/${event.id}`}>
-    <Card>
+    <Card className={"mb-3"}>
       <Card.Header>{event.title}</Card.Header>
       <Card.Body>
         <blockquote className="blockquote mb-0">
@@ -28,7 +28,7 @@ const Event = (props) => {
 
 const ParticipantList = (props) => {
   const { users } = props
-  return <ListGroup>
+  return <ListGroup className={"mb-4"}>
     <Card>
       <Card.Header>イベント参加者</Card.Header>
       <Card.Body>
@@ -52,7 +52,16 @@ const EventDetail = () => {
   const workspace = useSelector((state) => state.workspace)
   const dispatch = useDispatch()
 
+  dispatch({
+    type: "SET_BREADCRUMBS",
+    breadcrumbs: [
+      {url: "/events", title: "イベント一覧"},
+      {url: `/events/${eventId}`, title: "イベント詳細"}
+    ]
+  })
+
   useEffect(() => {
+
     if (!eventId) {
       return
     }

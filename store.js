@@ -7,6 +7,7 @@ const initialState = {
   count: 0,
   user: null,
   workspace: null,
+  breadcrumbs: []
 }
 
 const reducer = (state = initialState, action) => {
@@ -25,6 +26,11 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         count: state.count + 1,
+      }
+    case 'SET_BREADCRUMBS':
+      return {
+        ...state,
+        breadcrumbs: action.breadcrumbs
       }
     case 'DECREMENT':
       return {
