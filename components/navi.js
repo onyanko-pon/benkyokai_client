@@ -5,7 +5,7 @@ import {Navbar, Nav} from "react-bootstrap"
 // https://react-bootstrap.github.io/components/navbar/#navbars-mobile-friendly
 function Navi() {
   return <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-    <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
+    <Navbar.Brand href="#home">イベント管理アプリ</Navbar.Brand>
     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
     <Navbar.Collapse id="responsive-navbar-nav">
       <Nav className="mr-auto">
