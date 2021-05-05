@@ -1,13 +1,28 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import queryString from 'query-string'
+
+import {blockquote, Card} from "react-bootstrap";
+import Link from "next/link";
 
 const Event = (props) => {
-  return <div>
-    <p>id: { props.event.id }</p>
-    <p>title: { props.event.title }</p>
-    <p>description: { props.event.description }</p>
-  </div>
+
+  const { event } = props
+
+  return <Link href={`/events/${event.id}`}>
+    <Card>
+      <Card.Header>{event.title}</Card.Header>
+      <Card.Body>
+        <blockquote className="blockquote mb-0">
+          <p>
+            {event.description}
+          </p>
+          <footer className="blockquote-footer">
+            20:00~21:00
+          </footer>
+        </blockquote>
+      </Card.Body>
+    </Card>
+  </Link>
 }
 
 const EventDetail = () => {
@@ -34,8 +49,7 @@ const EventDetail = () => {
   }, [eventId])
 
   return <div>
-    event-id: {eventId},
-    {event ? <Event event={event} /> : "hoge"}
+    {event ? <Event event={event} /> : "loading"}
   </div>
 }
 
