@@ -21,7 +21,7 @@ export default function SignIn() {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({code})
+      body: JSON.stringify({code, redirect_uri: process.env.NEXT_PUBLIC_SIGN_IN_WITH_SLACK_REDIRECT_URI})
     }).then(data => data.json()
     ).then(data => {
       dispatch({
