@@ -90,9 +90,7 @@ const EventDetail = () => {
 
   return <div>
     {event ?
-      <Link href={`/events/${event.id}`}>
-        <EventCard event={event} />
-      </Link>
+      <EventCard href={`/events/${event.id}`} event={event} />
       : "loading"
     }
     {event ? <EventParticipantList users={event.users} /> : ""}
