@@ -94,7 +94,7 @@ const EventDetail = () => {
       : "loading"
     }
     {event ? <EventParticipantList users={event.users} /> : ""}
-    {event && !isParticipate ? <Button className={"m-1"} variant="outline-primary" onClick={() => (participate())}>参加する</Button> : ""}
+    {event && event.status === "published" && !isParticipate ? <Button className={"m-1"} variant="outline-primary" onClick={() => (participate())}>参加する</Button> : ""}
     {event && isAdministrator ? <Link href={`/events/${event.id}/edit`}><Button className={"m-1"} variant="outline-info">編集する</Button></Link> : ""}
   </div>
 }

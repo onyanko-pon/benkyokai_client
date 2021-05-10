@@ -9,7 +9,7 @@ function Navi() {
     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
     <Navbar.Collapse id="responsive-navbar-nav">
       <Nav className="mr-auto">
-        <Nav.Link href="/users/signin">サインイン</Nav.Link>
+        <Nav.Link href="/users/signin">サインイン/サインアップ</Nav.Link>
         <Nav.Link href="/events">イベント一覧</Nav.Link>
         <Nav.Link href="/events/create">イベント作成</Nav.Link>
         <Nav.Link href="/users/detail">ユーザー画面</Nav.Link>

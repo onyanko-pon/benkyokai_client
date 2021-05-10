@@ -32,6 +32,8 @@ export default function SignIn() {
         type: 'SET_WORKSPACE',
         workspace: data.workspace
       })
+
+      router.push("/events")
     })
 
   }, [router.asPath])
