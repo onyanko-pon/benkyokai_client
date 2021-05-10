@@ -10,6 +10,11 @@ export default function Index() {
       Slackのワークスペース単位でイベントが管理できます。
     </p>
     <p>
+      <Link href={"/"} >
+        <Button variant="outline-success">Slackへのインストール</Button>
+      </Link>
+    </p>
+    <p>
       <Link href={"/users/signin"} >
         <Button variant="outline-primary">サインイン / サインアップ</Button>
       </Link>
