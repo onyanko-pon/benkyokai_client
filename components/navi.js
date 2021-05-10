@@ -13,6 +13,7 @@ function Navi() {
         <Nav.Link href="/events">イベント一覧</Nav.Link>
         <Nav.Link href="/events/create">イベント作成</Nav.Link>
         <Nav.Link href="/users/detail">ユーザー画面</Nav.Link>
+        <Nav.Link href="/users/events">参加予定イベント</Nav.Link>
       </Nav>
     </Navbar.Collapse>
   </Navbar>

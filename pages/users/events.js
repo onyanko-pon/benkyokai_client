@@ -8,24 +8,26 @@ import {Card, Row, Col, Container, blockquote} from "react-bootstrap";
 
 const EventCard = (props) => {
 
+  const { event } = props
+
   return <Row className={"mt-3"}>
     <Col>
-      <Link href={`/events/${props.id}`}>
+      <Link href={`/events/${event.id}`}>
         <Card>
-          <Card.Header>{props.title}</Card.Header>
+          <Card.Header>{event.title}</Card.Header>
           <Card.Body>
             <blockquote className="blockquote mb-0">
               <p>
-                {props.description}
+                {event.description}
               </p>
               <footer className={'blockquote-footer'} >
-                { props.date }
+                { event.date }
               </footer>
               <footer className="blockquote-footer">
-                { props.startTime }~{ props.endTime }
+                { event.startTime }~{ event.endTime }
               </footer>
               <footer className="blockquote-footer">
-                イベント作成者: { props.administrator.name }
+                イベント作成者: { event.administrator.name }
               </footer>
             </blockquote>
           </Card.Body>
@@ -73,7 +75,7 @@ const Index = (props) => {
     verify()
       .then(data => {
         const {user} = data
-        return fetch(`${process.env.NEXT_PUBLIC_API_BASE}/events`, {
+        return fetch(`${process.env.NEXT_PUBLIC_API_BASE}/events/participate`, {
           credentials: "include",
           cache: "no-cache"
         })
@@ -85,7 +87,7 @@ const Index = (props) => {
 
   return <>
     {
-      events.map(event => <EventCard {...event} key={event.id} />)
+      events.map(event => <EventCard event={event} key={event.id} />)
     }
   </>
 }
