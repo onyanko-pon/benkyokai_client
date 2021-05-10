@@ -52,7 +52,12 @@ const Index = (props) => {
         // return fetch(`${process.env.NEXT_PUBLIC_API_BASE}/workspaces/${user.id}/events`)
       })
       .then(res => res.json())
-      .then(data => setEvents(data.events))
+      .then(data => {
+        const events = data.events.filter(event => {
+          return event.status === "published"
+        })
+        setEvents(events)
+      })
   }, [])
 
   return <>

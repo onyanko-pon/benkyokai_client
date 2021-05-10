@@ -30,7 +30,6 @@ const Event = (props) => {
   }
 
   return <>
-    <>
       <Form.Group controlId="formBasicTitle">
         <Form.Label>イベントタイトル</Form.Label>
         <Form.Control
@@ -90,32 +89,20 @@ const Event = (props) => {
           }} />
       </Form.Group>
 
+      <Form.Group controlId="exampleForm.SelectCustom">
+        <Form.Label>公開/非公開</Form.Label>
+        <Form.Control as="select" value={event.status} onChange={e =>{
+          const values = {...event, status: e.target.value}
+          setEvent(values)
+        }} >
+          <option value={"published"}>公開</option>
+          <option value={"wip"}>非公開</option>
+        </Form.Control>
+      </Form.Group>
+
       <Button variant="primary" type="submit" onClick={() => (saveEvent())}>
         送信
       </Button>
-    </>
-  </>
-
-  return <>
-    <Link href={`/events/${event.id}`}>
-      <Card className={"mb-3"}>
-        <Card.Header>{event.title}</Card.Header>
-        <Card.Body>
-          <blockquote className="blockquote mb-0">
-            <p>
-              {event.description}
-            </p>
-            <footer className="blockquote-footer">
-              20:00~21:00
-            </footer>
-            <footer className="blockquote-footer">
-              イベント作成者: { event.administrator.name }
-            </footer>
-          </blockquote>
-        </Card.Body>
-      </Card>
-    </Link>
-    <Button variant="outline-primary" onClick={() => (saveEvent())}>送信する</Button>
   </>
 }
 

@@ -44,7 +44,6 @@ const Index = (props) => {
 
     verify()
       .then(data => {
-        const {user} = data
         return fetch(`${process.env.NEXT_PUBLIC_API_BASE}/events`, {
           credentials: "include",
           cache: "no-cache"
@@ -61,12 +60,11 @@ const Index = (props) => {
         })
         setEvents(events)
       })
-  }, [user])
+  }, [(user ? user.id : null)])
 
   return <>
     {
       events.map(event => <EventCard key={event.id} href={`/events/${event.id}`} event={event} />)
-      </Link>)
     }
   </>
 }
