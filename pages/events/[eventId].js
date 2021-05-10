@@ -17,8 +17,14 @@ const Event = (props) => {
           <p>
             {event.description}
           </p>
+          <footer className={'blockquote-footer'} >
+            { event.date }
+          </footer>
           <footer className="blockquote-footer">
-            20:00~21:00
+            { event.startTime }~{ event.endTime }
+          </footer>
+          <footer className="blockquote-footer">
+            イベント作成者: { event.administrator.name }
           </footer>
         </blockquote>
       </Card.Body>
@@ -56,7 +62,6 @@ const EventDetail = () => {
     type: "SET_BREADCRUMBS",
     breadcrumbs: [
       {url: "/events", title: "イベント一覧"},
-      {url: `/events/${eventId}`, title: "イベント詳細"}
     ]
   })
 
@@ -124,7 +129,8 @@ const EventDetail = () => {
   return <div>
     {event ? <Event event={event} /> : "loading"}
     {event ? <ParticipantList users={event.users} /> : ""}
-    {event && !isParticipate ? <Button variant="outline-primary" onClick={() => (participate())}>参加する</Button> : ""}
+    {event && !isParticipate ? <Button className={"m-1"} variant="outline-primary" onClick={() => (participate())}>参加する</Button> : ""}
+    {event ? <Link href={`/events/${event.id}/edit`}><Button className={"m-1"} variant="outline-info">編集する</Button></Link> : ""}
   </div>
 }
 
