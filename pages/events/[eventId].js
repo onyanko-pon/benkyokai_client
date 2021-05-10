@@ -61,6 +61,7 @@ const EventDetail = () => {
   dispatch({
     type: "SET_BREADCRUMBS",
     breadcrumbs: [
+      {url: "/", title: "ホーム画面"},
       {url: "/events", title: "イベント一覧"},
     ]
   })
@@ -120,17 +121,18 @@ const EventDetail = () => {
       .then(res => res.json())
       .then(data => {
         alert("参加しました")
-        // router.reload()
+        router.reload()
       })
   }
 
   const isParticipate = inParticipateUser(event, user)
+  const isAdministrator = isAdministratorUser(event, user)
 
   return <div>
     {event ? <Event event={event} /> : "loading"}
     {event ? <ParticipantList users={event.users} /> : ""}
     {event && !isParticipate ? <Button className={"m-1"} variant="outline-primary" onClick={() => (participate())}>参加する</Button> : ""}
-    {event ? <Link href={`/events/${event.id}/edit`}><Button className={"m-1"} variant="outline-info">編集する</Button></Link> : ""}
+    {event && isAdministrator ? <Link href={`/events/${event.id}/edit`}><Button className={"m-1"} variant="outline-info">編集する</Button></Link> : ""}
   </div>
 }
 
@@ -142,6 +144,14 @@ const inParticipateUser = (event, user) =>  {
   })
 
   return !!find_user
+}
+
+const isAdministratorUser = (event, user) => {
+  if (!event || !user) {return false}
+
+  const { administrator } = event
+
+  return user.id === administrator.id
 }
 
 export default EventDetail

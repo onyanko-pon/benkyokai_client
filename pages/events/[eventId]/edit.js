@@ -130,6 +130,7 @@ const EventDetail = () => {
   dispatch({
     type: "SET_BREADCRUMBS",
     breadcrumbs: [
+      {url: "/", title: "ホーム画面"},
       {url: "/events", title: "イベント一覧"},
       {url: `/events/${eventId}`, title: "イベント詳細"}
     ]
