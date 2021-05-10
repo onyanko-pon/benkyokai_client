@@ -1,9 +1,20 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
-import { blockquote, Card, ListGroup, Button } from "react-bootstrap";
+import { blockquote, Card, ListGroup, Button, Badge } from "react-bootstrap";
 import Link from "next/link";
 import {useDispatch, useSelector} from "react-redux";
+
+const EventStatus = (props) => {
+  const { status } = props
+
+  if (status === "wip") {
+    return <Badge variant="secondary">準備中</Badge>
+  }
+
+  // published
+  return <Badge variant="success">募集中</Badge>
+}
 
 const Event = (props) => {
 
@@ -11,7 +22,7 @@ const Event = (props) => {
 
   return <Link href={`/events/${event.id}`}>
     <Card className={"mb-3"}>
-      <Card.Header>{event.title}</Card.Header>
+      <Card.Header>{event.title} <EventStatus status={event.status} /></Card.Header>
       <Card.Body>
         <blockquote className="blockquote mb-0">
           <p>
