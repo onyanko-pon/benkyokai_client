@@ -1,65 +1,13 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
-import { blockquote, Card, ListGroup, Button, Badge } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import Link from "next/link";
 import {useDispatch, useSelector} from "react-redux";
 
-const EventStatus = (props) => {
-  const { status } = props
+import EventCard from '../../components/Event/Card'
+import EventParticipantList from '../../components/Event/ParticipantList'
 
-  if (status === "wip") {
-    return <Badge variant="secondary">準備中</Badge>
-  }
-
-  // published
-  return <Badge variant="success">募集中</Badge>
-}
-
-const Event = (props) => {
-
-  const { event } = props
-
-  return <Link href={`/events/${event.id}`}>
-    <Card className={"mb-3"}>
-      <Card.Header>{event.title} <EventStatus status={event.status} /></Card.Header>
-      <Card.Body>
-        <blockquote className="blockquote mb-0">
-          <p>
-            {event.description}
-          </p>
-          <footer className={'blockquote-footer'} >
-            { event.date }
-          </footer>
-          <footer className="blockquote-footer">
-            { event.startTime }~{ event.endTime }
-          </footer>
-          <footer className="blockquote-footer">
-            イベント作成者: { event.administrator.name }
-          </footer>
-        </blockquote>
-      </Card.Body>
-    </Card>
-  </Link>
-}
-
-const ParticipantList = (props) => {
-  const { users } = props
-  return <ListGroup className={"mb-4"}>
-    <Card>
-      <Card.Header>イベント参加者</Card.Header>
-      <Card.Body>
-        <ListGroup variant="flush">
-        {
-          users.map(user =>
-            <ListGroup.Item key={user.id}>{user.name}</ListGroup.Item>
-          )
-        }
-        </ListGroup>
-      </Card.Body>
-    </Card>
-  </ListGroup>
-}
 
 const EventDetail = () => {
   const router = useRouter()
@@ -120,6 +68,7 @@ const EventDetail = () => {
       ))
       .then(res => res.json())
       .then(data => {
+        console.log({data})
         setEvent(data.event)
       })
   }, [eventId])
@@ -140,8 +89,13 @@ const EventDetail = () => {
   const isAdministrator = isAdministratorUser(event, user)
 
   return <div>
-    {event ? <Event event={event} /> : "loading"}
-    {event ? <ParticipantList users={event.users} /> : ""}
+    {event ?
+      <Link href={`/events/${event.id}`}>
+        <EventCard event={event} />
+      </Link>
+      : "loading"
+    }
+    {event ? <EventParticipantList users={event.users} /> : ""}
     {event && !isParticipate ? <Button className={"m-1"} variant="outline-primary" onClick={() => (participate())}>参加する</Button> : ""}
     {event && isAdministrator ? <Link href={`/events/${event.id}/edit`}><Button className={"m-1"} variant="outline-info">編集する</Button></Link> : ""}
   </div>

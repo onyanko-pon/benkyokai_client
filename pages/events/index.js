@@ -5,35 +5,7 @@ import Link from "next/link";
 
 // blockquote ないかも
 import {Card, Row, Col, Container, blockquote} from "react-bootstrap";
-
-const EventCard = (props) => {
-
-  return <Row className={"mt-3"}>
-    <Col>
-      <Link href={`/events/${props.id}`}>
-        <Card>
-          <Card.Header>{props.title}</Card.Header>
-          <Card.Body>
-            <blockquote className="blockquote mb-0">
-              <p>
-                {props.description}
-              </p>
-              <footer className={'blockquote-footer'} >
-                { props.date }
-              </footer>
-              <footer className="blockquote-footer">
-                { props.startTime }~{ props.endTime }
-              </footer>
-              <footer className="blockquote-footer">
-                イベント作成者: { props.administrator.name }
-              </footer>
-            </blockquote>
-          </Card.Body>
-        </Card>
-      </Link>
-    </Col>
-  </Row>
-}
+import EventCard from "../../components/Event/Card";
 
 const Index = (props) => {
 
@@ -85,7 +57,9 @@ const Index = (props) => {
 
   return <>
     {
-      events.map(event => <EventCard {...event} key={event.id} />)
+      events.map(event =>  <Link key={event.id} href={`/events/${event.id}`}>
+        <EventCard event={event} />
+      </Link>)
     }
   </>
 }
