@@ -10,8 +10,9 @@ function Navi() {
     <Navbar.Collapse id="responsive-navbar-nav">
       <Nav className="mr-auto">
         <Nav.Link href="/users/signin">サインイン</Nav.Link>
-        <Nav.Link href="/events">イベント一覧</Nav.Link>
         <Nav.Link href="/users/detail">ユーザー画面</Nav.Link>
+        <Nav.Link href="/events">イベント一覧</Nav.Link>
+        <Nav.Link href="/users/events">参加予定イベント</Nav.Link>
       </Nav>
     </Navbar.Collapse>
   </Navbar>
