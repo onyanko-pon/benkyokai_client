@@ -18,6 +18,7 @@ export default function SignIn() {
     fetch(`${process.env.NEXT_PUBLIC_API_BASE}/slack/auth/signin`, {
       credentials: 'include',
       method: "POST",
+      cache: 'no-cache',
       headers: {
         'Content-Type': 'application/json',
       },
