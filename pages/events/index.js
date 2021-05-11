@@ -25,9 +25,11 @@ const Index = (props) => {
 
       const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/slack/auth/verify`, {method: "POST", credentials: 'include'})
       if (!res.ok) {
+        const hoge = await res.json()
+        alert(JSON.stringify({hoge}))
         return router.push("/users/signin")
       }
-      const data= await res.json()
+      const data = await res.json()
       const {user, workspace} = data
 
       dispatch({

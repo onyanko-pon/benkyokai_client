@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router'
 import { useEffect } from "react"
-import queryString from 'query-string'
+import queryString, {stringify} from 'query-string'
 import { useDispatch, useSelector } from 'react-redux'
 
 export default function SignIn() {
@@ -22,18 +22,19 @@ export default function SignIn() {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({code, redirect_uri: process.env.NEXT_PUBLIC_SIGN_IN_WITH_SLACK_REDIRECT_URI})
-    }).then(data => data.json()
-    ).then(data => {
-      dispatch({
-        type: 'SET_USER',
-        user: data.user,
-      })
-      dispatch({
-        type: 'SET_WORKSPACE',
-        workspace: data.workspace
-      })
-
-      router.push("/events")
+    })
+      .then(data => data.json())
+      .then(data => {
+        alert(JSON.stringify({data}))
+        dispatch({
+          type: 'SET_USER',
+          user: data.user,
+        })
+        dispatch({
+          type: 'SET_WORKSPACE',
+          workspace: data.workspace
+        })
+        router.push("/events")
     })
 
   }, [router.asPath])
