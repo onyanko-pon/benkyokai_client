@@ -55,9 +55,7 @@ const Index = (props) => {
 
   return <>
     {
-      events.map(event => <Link key={event.id} href={`/events/${event.id}`} >
-        <EventCard event={event} key={event.id} />
-      </Link>)
+      events.map(event => <EventCard event={event} href={`/events/${event.id}`} key={event.id} />)
     }
   </>
 }
